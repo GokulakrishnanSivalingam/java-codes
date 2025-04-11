@@ -1,0 +1,27 @@
+name: Java CI
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v3
+
+    - name: Set up Java
+      uses: actions/setup-java@v3
+      with:
+        distribution: 'temurin' # or adopt, zulu, etc.
+        java-version: '17'      # or 11, 8, etc.
+
+    - name: Compile Java
+      run: javac Main.java
+
+    - name: Run Java
+      run: java Main
