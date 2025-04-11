@@ -17,11 +17,14 @@ jobs:
     - name: Set up Java
       uses: actions/setup-java@v3
       with:
-        distribution: 'temurin' # or adopt, zulu, etc.
-        java-version: '17'      # or 11, 8, etc.
+        distribution: 'temurin'
+        java-version: '17'
 
-    - name: Compile Java
-      run: javac Main.java
+    - name: Compile all Java files
+      run: javac *.java
 
-    - name: Run Java
-      run: java Main
+    - name: Run the class specified in main-class.txt
+      run: |
+        CLASSNAME=$(cat main-class.txt)
+        echo "Running Java class: $CLASSNAME"
+        java $CLASSNAME
