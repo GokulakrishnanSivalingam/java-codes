@@ -1,7 +1,7 @@
 import java.util.*;
 class ListNode3 {
     int val;
-    ListNode3 next;
+    ListNode next;
 
     ListNode3(int val) {
         this.val = val;
