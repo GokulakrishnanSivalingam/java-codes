@@ -23,8 +23,9 @@ jobs:
     - name: Compile all Java files
       run: javac *.java
 
-    - name: Run the class specified in main-class.txt
+    - name: Find and run Java class with main method
       run: |
-        CLASSNAME=$(cat main-class.txt)
-        echo "Running Java class: $CLASSNAME"
-        java $CLASSNAME
+        MAIN_FILE=$(grep -rl 'public static void main' *.java | head -n 1)
+        CLASS_NAME=$(basename "$MAIN_FILE" .java)
+        echo "Detected main class: $CLASS_NAME"
+        java "$CLASS_NAME"
